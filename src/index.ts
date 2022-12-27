@@ -16,6 +16,8 @@ GLTFAnimationPlugin,
     TweakpaneUiPlugin, AssetManagerBasicPopupPlugin, CanvasSnipperPlugin,
 
     IViewerPlugin,
+    MeshBasicMaterial2,
+    Color,
 
     // Color, // Import THREE.js internals
     // Texture, // Import THREE.js internals
@@ -92,7 +94,8 @@ async function setupViewer(){
     console.log(viewer.scene)
     
 
-
+    const head_color=manager.materials!.findMaterialsByName('airpods_max_silver_sides')[0] as MeshBasicMaterial2
+     
 
 const gui = new GUI()
 const cubeFolder = gui.addFolder('Cube')
@@ -180,11 +183,22 @@ elem.style.position = 'absolute';
 
 document.addEventListener("scroll", (event) => {
  lastKnownScrollPosition = window.scrollY;
- //console.log(lastKnownScrollPosition,elem)
-// elem.style.top = `${lastKnownScrollPosition}px`
+ console.log(lastKnownScrollPosition,elem)
+ elem.style.top = `${lastKnownScrollPosition}px`
+
+    
   
 })
+function change_color(_colorchange: Color) {
+// change_color(new Color(ox343s).covertSRGBToLiner()
+   
+    //viewer.scene.setDirty()<색 저장
+    head_color.color = _colorchange;
+
 }
+
+}
+
 
 
 setupViewer()
