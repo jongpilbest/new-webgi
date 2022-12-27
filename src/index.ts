@@ -89,11 +89,16 @@ async function setupViewer(){
 
     }
 
+    console.log(viewer.scene)
+    
+
+
+
 const gui = new GUI()
 const cubeFolder = gui.addFolder('Cube')
-cubeFolder.add(viewer.scene.rotation, 'x', 0, Math.PI * 2)
-cubeFolder.add( viewer.scene.rotation, 'y', 0, Math.PI * 2)
-cubeFolder.add( viewer.scene.rotation, 'z', 0, Math.PI * 2)
+cubeFolder.add(viewer.scene.modelObject.position, 'x', -5, 5, 0.01)
+cubeFolder.add(viewer.scene.modelObject.position, 'y', -5, 5, 0.01)
+cubeFolder.add(viewer.scene.modelObject.position, 'z', -5, 5, 0.01)
 cubeFolder.open()
 const cameraFolder = gui.addFolder('Camera')
 cameraFolder.add(camera.position, 'z', 0, 10)
@@ -104,9 +109,18 @@ let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view._cameraViews=[view]
 
      view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
-  view.position.set(6,4,5)
+  //view.position.set(1,2,5)
   camViewPlugin._cameraViews.push(view)
-    
+    const controls :any = viewer.scene.activeCamera.controls;
+    controls.autoRotate = true; 
+
+const options = viewer.scene.activeCamera.getCameraOptions();
+    options.zoom = 1;
+    controls.autoRotateSpeed = 2;
+viewer.scene.activeCamera.setCameraOptions(options);
+
+
+
       view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view.position.set(-2,4,5)
 
@@ -166,8 +180,8 @@ elem.style.position = 'absolute';
 
 document.addEventListener("scroll", (event) => {
  lastKnownScrollPosition = window.scrollY;
- console.log(lastKnownScrollPosition,elem)
- elem.style.top = `${lastKnownScrollPosition}px`
+ //console.log(lastKnownScrollPosition,elem)
+// elem.style.top = `${lastKnownScrollPosition}px`
   
 })
 }
