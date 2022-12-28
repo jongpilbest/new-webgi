@@ -28,6 +28,18 @@ import { GUI } from 'dat.gui'
 import { ScrollTrigger } from "gsap/all";
 //import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger)
+
+const click_white :any  = document.getElementById('third-white') as HTMLCanvasElement;
+
+const click_black: any = document.getElementById('third-black') as HTMLCanvasElement;
+
+const click_red: any = document.getElementById('third-red') as HTMLCanvasElement;
+
+const click_blue: any = document.getElementById('third-blue') as HTMLCanvasElement;
+
+const click_green: any = document.getElementById('third-green') as HTMLCanvasElement;
+
+
 async function setupViewer(){
 
     // Initialize the viewer
@@ -71,7 +83,7 @@ async function setupViewer(){
     // This must be called once after all plugins are added.
     viewer.renderer.refreshPipeline()
 
-    await manager.addFromPath("./assets/5.glb")
+    await manager.addFromPath("./assets/new-main.glb")
 
     // Load an environment map if not set in the glb file
     // await viewer.scene.setEnvironment(
@@ -91,11 +103,12 @@ async function setupViewer(){
 
     }
 
-    console.log(viewer.scene)
-    
 
-    const head_color=manager.materials!.findMaterialsByName('airpods_max_silver_sides')[0] as MeshBasicMaterial2
-     
+//
+    const out_color=manager.materials!.findMaterialsByName('airpods_max_silver_sides')[0] as MeshBasicMaterial2
+    const inn_color=manager.materials!.findMaterialsByName('airpods_max_silver_earbuds')[0] as MeshBasicMaterial2
+    const head_color = manager.materials!.findMaterialsByName('airpods_max_silver_white_top')[0] as MeshBasicMaterial2
+    
 
 const gui = new GUI()
 const cubeFolder = gui.addFolder('Cube')
@@ -118,7 +131,7 @@ let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
     controls.autoRotate = true; 
 
 const options = viewer.scene.activeCamera.getCameraOptions();
-    options.zoom = 1;
+    options.zoom = 0.95;
     controls.autoRotateSpeed = 2;
 viewer.scene.activeCamera.setCameraOptions(options);
 
@@ -175,7 +188,7 @@ function stepScroll() {
     })
     
     
-    var elem: any = document.getElementById('webgi-canvas-container') as HTMLDivElement | null;
+var elem: any = document.getElementById('webgi-canvas-container') as HTMLDivElement | null;
 let lastKnownScrollPosition = 0;
 
 elem.style.position = 'absolute';
@@ -183,19 +196,64 @@ elem.style.position = 'absolute';
 
 document.addEventListener("scroll", (event) => {
  lastKnownScrollPosition = window.scrollY;
- console.log(lastKnownScrollPosition,elem)
+// console.log(lastKnownScrollPosition,elem)
  elem.style.top = `${lastKnownScrollPosition}px`
 
-    
   
 })
+    
+    
+ click_black.addEventListener('click',() => {
+        change_color(new Color(0x181818).convertSRGBToLinear())
+        change_color2(new Color(0x857e7e).convertSRGBToLinear())
+        change_color3(new Color(0x333333).convertSRGBToLinear())
+})
+    
+ click_white.addEventListener('click',() => {
+        change_color(new Color(0x9c9c9c).convertSRGBToLinear())
+        change_color2(new Color(0xfefefe).convertSRGBToLinear())
+        change_color3(new Color(0xfefefe).convertSRGBToLinear())
+})
+ click_green.addEventListener('click',() => {
+        change_color(new Color(0xa6caa0).convertSRGBToLinear())
+        change_color2(new Color(0xc0ddb6).convertSRGBToLinear())
+        change_color3(new Color(0x769787).convertSRGBToLinear())
+})
+ click_red.addEventListener('click',() => {
+        change_color(new Color(0xba5656).convertSRGBToLinear())
+        change_color2(new Color(0xd47171).convertSRGBToLinear())
+        change_color3(new Color(0xa73f3f).convertSRGBToLinear())
+})
+ click_blue.addEventListener('click',() => {
+        change_color(new Color(0x95c7f9).convertSRGBToLinear())
+        change_color2(new Color(0xa8d1f2).convertSRGBToLinear())
+        change_color3(new Color(0x5d788a).convertSRGBToLinear())
+})
+
+
+    
 function change_color(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
-   
+    console.log('색 지정 이너',inn_color)
+    //viewer.scene.setDirty()<색 저장
+    inn_color.color = _colorchange;
+
+    }
+    function change_color2(_colorchange: Color) {
+// change_color(new Color(ox343s).covertSRGBToLiner()
+     console.log('색 지정 아웃 ',out_color)
+    //viewer.scene.setDirty()<색 저장
+    out_color.color = _colorchange;
+
+    }
+     function change_color3(_colorchange: Color) {
+// change_color(new Color(ox343s).covertSRGBToLiner()
+     console.log('색 지정 머리부분 ',head_color)
     //viewer.scene.setDirty()<색 저장
     head_color.color = _colorchange;
 
 }
+
 
 }
 
