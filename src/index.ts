@@ -117,49 +117,107 @@ cubeFolder.add(viewer.scene.modelObject.position, 'y', -5, 5, 0.01)
 cubeFolder.add(viewer.scene.modelObject.position, 'z', -5, 5, 0.01)
 cubeFolder.open()
 const cameraFolder = gui.addFolder('Camera')
-cameraFolder.add(camera.position, 'z', 0, 10)
-cameraFolder.open()
 
+cameraFolder.open()
 
 let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view._cameraViews=[view]
 
      view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
-  //view.position.set(1,2,5)
+  view.position.set(-4.06, 1.33, 1.29)
   camViewPlugin._cameraViews.push(view)
     const controls :any = viewer.scene.activeCamera.controls;
-    controls.autoRotate = true; 
+   // controls.autoRotate = true; 
 
 const options = viewer.scene.activeCamera.getCameraOptions();
-    options.zoom = 0.95;
+   // options.zoom = 0.6;
+    controls.rotateSpeed = 3;
     controls.autoRotateSpeed = 2;
 viewer.scene.activeCamera.setCameraOptions(options);
+    window.onresize = function (event) {
+     
+console.log(window.outerWidth,'화면 크기 ')
 
+ }
 
 
       view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
-  view.position.set(-2,4,5)
+ // console.log(view.position,'카메라 포지션')
+  cubeFolder.add(view.position, 'x', -5, 5, 0.01)
+ view.position.set(-4.06, 1.33, 1.29)
 
   camViewPlugin._cameraViews.push(view)
     
       //camViewPlugin.animDuration = 5000 
     camViewPlugin.animEase = 'circInOut'
       
- // await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 5000)
+  //await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 1000)
   //await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 5000)
+    const camera_go = async function () {
+      
+         controls.autoRotate = false; 
+        viewer.scene.modelObject.position.x = 0.12;
+        viewer.scene.modelObject.position.y = 0.12;
+          viewer.scene.modelObject.position.z = -0.65;
+        await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 2000)  
+        
+}
+    const zoom_oo = function () { var check_widht = window.outerWidth;
+        console.log('?뭐임',check_widht)
+        
+        if (check_widht > 300 && check_widht < 800) {
+            options.zoom = 0.5;
+          
+        }
+        else if (check_widht > 800 && check_widht < 1000) {
+             options.zoom = 0.6;
+        }
+        else if (check_widht > 1000) {
+            options.zoom = 1;
+            console.log('왜?안됨')
+        }
+        viewer.scene.activeCamera.setCameraOptions(options);
+       //viewer.scene.activeCamera.updateProjectionMatrix();
+    } 
+    window.onresize = function (event) {
+    zoom_oo();
+}
+    
+    const camera_go_first = function () {
+       
 
-function stepScroll() {
-    gsap.timeline({
- scrollTrigger: {
-    trigger: ".second",
+           controls.autoRotate = true; 
+       
+    }
+    
+    function stepScroll() {
+         ScrollTrigger.create({
+  trigger: '.first',
+  onEnter: camera_go_first,
+
+})
+     ScrollTrigger.create({
+  trigger: '.six-1',
+  onEnter: camera_go,
+
+})
+
+
+    /*
+     gsap.to(".second", {
+    scrollTrigger: {
     start: "top center",
     end: "bottom bottom",
-    toggleActions: "play none none reset",
-    markers: true,
+    toggleActions: "restart none none none",
+
   },
-    });
+
+        })
     // First Section
-    console.log('?')
+        console.log('?')
+        
+     */
+
   /*
   it.to(target, {
         x: 1,
@@ -234,24 +292,24 @@ document.addEventListener("scroll", (event) => {
     
 function change_color(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
-    console.log('색 지정 이너',inn_color)
+    //console.log('색 지정 이너',inn_color)
     //viewer.scene.setDirty()<색 저장
     inn_color.color = _colorchange;
-
+    viewer.scene.setDirty()
     }
     function change_color2(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
      console.log('색 지정 아웃 ',out_color)
     //viewer.scene.setDirty()<색 저장
     out_color.color = _colorchange;
-
+    viewer.scene.setDirty()
     }
      function change_color3(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
      console.log('색 지정 머리부분 ',head_color)
-    //viewer.scene.setDirty()<색 저장
-    head_color.color = _colorchange;
 
+    head_color.color = _colorchange;
+    viewer.scene.setDirty()
 }
 
 
