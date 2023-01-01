@@ -2,7 +2,7 @@ import {
     ViewerApp,
     AssetManagerPlugin,
     GBufferPlugin,
-
+    AudioLoader,
     ProgressivePlugin,
     TonemapPlugin,
     SSRPlugin,
@@ -18,6 +18,7 @@ GLTFAnimationPlugin,
     IViewerPlugin,
     MeshBasicMaterial2,
     Color,
+    csgOperations,
 
     // Color, // Import THREE.js internals
     // Texture, // Import THREE.js internals
@@ -39,7 +40,9 @@ const click_blue: any = document.getElementById('third-blue') as HTMLCanvasEleme
 
 const click_green: any = document.getElementById('third-green') as HTMLCanvasElement;
 
-
+  
+    
+var elem: any = document.getElementById('webgi-canvas-container') as HTMLDivElement | null 
 async function setupViewer(){
 
     // Initialize the viewer
@@ -122,8 +125,6 @@ cameraFolder.open()
 
 let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view._cameraViews=[view]
-
-     view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view.position.set(-4.06, 1.33, 1.29)
   camViewPlugin._cameraViews.push(view)
     const controls :any = viewer.scene.activeCamera.controls;
@@ -139,18 +140,25 @@ viewer.scene.activeCamera.setCameraOptions(options);
 console.log(window.outerWidth,'화면 크기 ')
 
  }
-
-
-      view = camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
- // console.log(view.position,'카메라 포지션')
+ view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   cubeFolder.add(view.position, 'x', -5, 5, 0.01)
- view.position.set(-4.06, 1.33, 1.29)
+ view.position.set(3.21, -0.42, 4.89)
 
-  camViewPlugin._cameraViews.push(view)
-    
+    camViewPlugin._cameraViews.push ( view);
+    console.log('첫번쟤',   camViewPlugin._cameraView)
+ 
+ view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-3.46, -2.25, 4.08)
+
+
+    camViewPlugin._cameraViews.push(view)
+  
+    //view.position.set(0.26, 0.85, 7.57)
+
+    //camViewPlugin._cameraViews.push(view)
       //camViewPlugin.animDuration = 5000 
     camViewPlugin.animEase = 'circInOut'
-      
+    console.log(camViewPlugin._cameraViews,'확인좀')
   //await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 1000)
   //await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 5000)
     const camera_go = async function () {
@@ -158,11 +166,19 @@ console.log(window.outerWidth,'화면 크기 ')
          controls.autoRotate = false; 
         viewer.scene.modelObject.position.x = 0.12;
         viewer.scene.modelObject.position.y = 0.12;
-          viewer.scene.modelObject.position.z = -0.65;
-        await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 2000)  
+        viewer.scene.modelObject.position.z = -0.65;
+        
+
+       //await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 2000)  
+        
+
         
 }
-    const zoom_oo = function () { var check_widht = window.outerWidth;
+    
+    
+    
+    const zoom_oo = function () {
+        var check_widht = window.outerWidth;
         console.log('?뭐임',check_widht)
         
         if (check_widht > 300 && check_widht < 800) {
@@ -173,7 +189,7 @@ console.log(window.outerWidth,'화면 크기 ')
              options.zoom = 0.6;
         }
         else if (check_widht > 1000) {
-            options.zoom = 1;
+            options.zoom = 0.6;
             console.log('왜?안됨')
         }
         viewer.scene.activeCamera.setCameraOptions(options);
@@ -182,26 +198,106 @@ console.log(window.outerWidth,'화면 크기 ')
     window.onresize = function (event) {
     zoom_oo();
 }
-    
-    const camera_go_first = function () {
-       
+    const camera_go_second_2 = function () {
+        console.log('Back')
+    }
+    const camera_go_second = async function () {
+         
+              elem.style.top = `${100}vh`
+       options.zoom = 0.9;
+                viewer.scene.activeCamera.setCameraOptions(options);;
+      viewer.scene.modelObject.position.x = -0.21;
+        viewer.scene.modelObject.position.y = 0.12;
+        viewer.scene.modelObject.position.z = -0.65;
+        console.log(camViewPlugin._cameraViews);
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[2], 1000) 
 
-           controls.autoRotate = true; 
+    }
+    const camera_go_third = async function () {
+       
+         elem.style.top = `${200}vh`
+        options.zoom = 0.8;
+            viewer.scene.activeCamera.setCameraOptions(options);
+         viewer.scene.modelObject.position.x =0;
+        viewer.scene.modelObject.position.y = 0.12;
+        viewer.scene.modelObject.position.z = -1.75;
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 1000) 
+    }
+
+    const camera_go_first =  async function () {
+        elem.style.top = `${0}vh`
+
+           //controls.autoRotate = true; 
        
     }
     
     function stepScroll() {
+
          ScrollTrigger.create({
-  trigger: '.first',
-  onEnter: camera_go_first,
+             trigger: '.first',
+             onEnter: camera_go_first,
+             //onEnterBack: camera_go_second,
+             //onLeave: camera_go_first,
+            // onLeaveBack:camera_go_first
 
-})
+         })
+        
+        
      ScrollTrigger.create({
-  trigger: '.six-1',
-  onEnter: camera_go,
+  trigger: '.second',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => { camera_go_second() },
+         onEnterBack: () => {
+             
+             camera_go_second()
+              console.log('2번째 back')
+         }
 
-})
+     })
+      
+     ScrollTrigger.create({
+  trigger: '.third',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => { camera_go_third() },
+         onEnterBack: () => {
+             
+             camera_go_third()
+            console.log('3번째 back')
+         }
 
+     })
+
+        /*
+        
+        ScrollTrigger.create({
+            markers:true,
+    trigger: '.second',
+     start: "top bottom",
+            end: "top top",
+    toggleActions: "play pause resume reset",
+    onEnter: camera_go_second,
+  onEnterBack:camera_go_second,
+    //onLeaveBack: camera_go_third,
+ //onLeave:camera_go_second
+        })
+        
+ScrollTrigger.create({
+    trigger: '.third',
+           start: "top bottom",
+    end:"top top",
+    markers: true,
+        toggleActions: "play pause resume reset",
+    onEnter: camera_go_third,
+    //onLeaveBack: camera_go_third,
+    onEnterBack: camera_go_third,
+   // onLeave:camera_go_third
+
+})*/
 
     /*
      gsap.to(".second", {
@@ -244,9 +340,7 @@ console.log(window.outerWidth,'화면 크기 ')
         }
 
     })
-    
-    
-var elem: any = document.getElementById('webgi-canvas-container') as HTMLDivElement | null;
+  
 let lastKnownScrollPosition = 0;
 
 elem.style.position = 'absolute';
@@ -255,7 +349,7 @@ elem.style.position = 'absolute';
 document.addEventListener("scroll", (event) => {
  lastKnownScrollPosition = window.scrollY;
 // console.log(lastKnownScrollPosition,elem)
- elem.style.top = `${lastKnownScrollPosition}px`
+ //elem.style.top = `${lastKnownScrollPosition}px`
 
   
 })
