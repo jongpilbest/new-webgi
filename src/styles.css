@@ -48,6 +48,7 @@ z-index: 2;
       text-align: center;
       margin-left: auto;
  margin-top: 0;
+ 
       margin-right: auto;
       font-family: 'Nanum Gothic', sans-serif;
 }
@@ -123,7 +124,7 @@ z-index: 2;
 }
 .second-1-2{
   font-family: 'Nanum Gothic', sans-serif;
-font-size: 13px;
+font-size: 15px;
     margin: 0;
     padding: 0;
     font-weight: bold;
@@ -185,33 +186,50 @@ margin-right: 10px;
     position: relative;
   
 }
+.third-ff{
+  width: 100%;
+  height: 20%;
+  margin-left:5%;
+}
+.third-2-3{
+  width: 100%;
+  height: 50%;
+  background-color: black;
+}
+
+
 .thrid-main{
-  width: 20vw;
-height: 30vh;
+  width: 40vw;
+height: 100vh;
 position: absolute;
-right:0;
-
-top:30%;
 display: flex;
-justify-content: center;
-align-items: center;
-
+margin-left:5%;
+  flex-direction: row;
 }
 .third-2{
-  width: 30%;
+  width: 20%;
   height: 100%;
   
   padding: auto;
   flex-direction: column;
+  display: flex;
+    justify-content: center;
 }
 .third-3{
-  width:7vw;
-  height: 7vw;
+  width:4vw;
+  height: 4vw;
   background-color: white;
   border-color: black;
   border-width: 0.1vw;
     border-style: solid;
  margin-top: 10px;
+}
+.third-2-2{
+  width:80%;
+  height:90%;
+  background-color: yellow;
+  display: flex;
+    justify-content: center;
 }
 .third-img{
 background-size: cover;
@@ -225,36 +243,115 @@ width: 100vw;
   display: flex;
   flex-direction: column;
   position: relative;
+}.zero{
+  width: 100%;
+  height: 10vh;
+}
+.fifth-n{
+    color: white;
+      font-family: 'Nanum Gothic', sans-serif;
+      font-size: 15px;
+  line-height: 200%;
+  text-align: center;
+      margin: 0;
 }
 .fifth-name{
 font-family: 'Nanum Gothic', sans-serif;
-  font-size:4rem;
-  color:#C0C0C0;
-  writing-mode: vertical-rl;
-  padding: 10px , 5px;
+  font-size:60px;
+  color:white;
+  text-align: center;
+  margin:15px
+
+
 }
+.seven{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.seven-1{
+  width: 100vw;
+  height: 15vh;
+  
+}
+.seven-p{
+  font-family: 'Nanum Gothic', sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    line-height: 100%;
+    margin-left: 2%;
+        text-align: center;
+}
+
+.eve{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.dia{
+  width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+}
+
+
+.eve-1{
+  width: 15vw;
+  height: 100vh;
+    margin-left: 5%;
+  display: flex;
+  justify-content: center;
+  margin-right: 5%;
+}
+.eve-2{
+    font-family: 'Nanum Gothic', sans-serif;
+      font-size: 1rem;
+      color: white;
+      text-align: center;
+      line-height: 180%;
+}
+.eve-3{
+  width: 100%;
+  height: 30vh;
+ 
+  align-self: center;
+}
+
 .fifth-2 {
   display: flex;
-  width: 20vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  height: 10%;
+ 
   flex-direction: column;
 }
 .fifth-3{
-    width: 40vw;
-      height: 100vh;
-      position: absolute;
-      right: 0;
-      flex-direction: column;
-      display: flex;
-      align-items: flex-end;
+      width: 100vw;
+        height: 20vh;
+        background-color: black;
+        flex-direction: column;
+        display: flex;
+    
+      
+
+     
 }
 .fifth-p{
   font-family: 'Nanum Gothic', sans-serif;
     font-size: 1.8rem;
     color: white;
     text-align: center;
+ 
 }
 .fifth-4{
 
@@ -313,7 +410,41 @@ justify-content: center;
 }
 .six-p{
   font-family: 'Nanum Gothic', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #C0C0C0;
     line-height: 200%;
+ 
+}
+.misu{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+}
+
+.misu-1{
+width: 70vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.misu-2{
+  font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.8rem;
+    color: white;
+    line-height: 200%;
+    margin-right: 5%;
+    /* display: flex; */
+    text-align: end;
+}
+.misu-3{
+  font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20rem;
+    color: white;
+    /* text-align: center; */
+    line-height: 200%;
+    margin-left: 10%;
 }

@@ -131,7 +131,7 @@ let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
    // controls.autoRotate = true; 
 
 const options = viewer.scene.activeCamera.getCameraOptions();
-   // options.zoom = 0.6;
+
     controls.rotateSpeed = 3;
     controls.autoRotateSpeed = 2;
 viewer.scene.activeCamera.setCameraOptions(options);
@@ -152,6 +152,44 @@ console.log(window.outerWidth,'화면 크기 ')
 
 
     camViewPlugin._cameraViews.push(view)
+     
+ view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-0.39, -0.43, -7.19)
+
+
+    camViewPlugin._cameraViews.push(view)
+         
+ view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-2.22, 0.01, -0.76)
+
+
+    camViewPlugin._cameraViews.push(view)
+
+     view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-2.75, 0.53, 0.9)
+
+
+    camViewPlugin._cameraViews.push(view)
+
+        view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-5.93, -2.95, 0.082)
+
+
+    camViewPlugin._cameraViews.push(view)
+       view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-3.18, -0.07, -0.039)
+
+
+    camViewPlugin._cameraViews.push(view)
+
+    
+ 
+       view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
+ view.position.set(-0.55, -3.85, -0.18)
+
+
+    camViewPlugin._cameraViews.push(view)
+  
   
     //view.position.set(0.26, 0.85, 7.57)
 
@@ -204,7 +242,7 @@ console.log(window.outerWidth,'화면 크기 ')
     const camera_go_second = async function () {
          
               elem.style.top = `${100}vh`
-       options.zoom = 0.9;
+       options.zoom = 0.85;
                 viewer.scene.activeCamera.setCameraOptions(options);;
       viewer.scene.modelObject.position.x = -0.21;
         viewer.scene.modelObject.position.y = 0.12;
@@ -216,32 +254,154 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[2], 1000)
     const camera_go_third = async function () {
        
          elem.style.top = `${200}vh`
-        options.zoom = 0.8;
+        options.zoom = 0.85;
             viewer.scene.activeCamera.setCameraOptions(options);
          viewer.scene.modelObject.position.x =0;
         viewer.scene.modelObject.position.y = 0.12;
-        viewer.scene.modelObject.position.z = -1.75;
+        viewer.scene.modelObject.position.z = -1;
 
 await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 1000) 
     }
+    const camera_go_six = async function () {
+        options.zoom = 0.7;
 
-    const camera_go_first =  async function () {
-        elem.style.top = `${0}vh`
+       viewer.scene.modelObject.position.x = -1.34;
+           viewer.scene.modelObject.position.z = -1.2;
+   elem.style.top = `${400}vh`
 
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[4], 1000) 
+    }
+ const camera_go_eigth = async function () {
+        options.zoom = 0.8;
+  viewer.scene.activeCamera.setCameraOptions(options);
+        //viewer.scene.modelObject.position.x = -1.34;
+             viewer.scene.modelObject.position.z = 0.23;
+   elem.style.top = `${510}vh`
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[5], 1000) 
+    }
+
+
+ const camera_go_seven = async function () {
+        options.zoom = 0.7;
+        viewer.scene.modelObject.position.z = -1.2;
+        elem.style.top = `${450}vh`
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[4], 1000) 
+    }
+
+
+    const camera_go_first = async function () {
+        options.zoom = 1;
+           viewer.scene.activeCamera.setCameraOptions(options);
+        elem.style.top = `${0}vh`;
+          viewer.scene.modelObject.position.y = -0.2;
+        /*
+ viewer.scene.modelObject.position.x =0;
+        viewer.scene.modelObject.position.y = -0.2;
+        viewer.scene.modelObject.position.z = 0;
+           //controls.autoRotate = true; 
+       */
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[3], 1000) 
+    }
+    const camera_go_eve = async function () {
+        options.zoom = 1.4;
+          viewer.scene.activeCamera.setCameraOptions(options);
+        elem.style.top = `${610}vh`;
+          viewer.scene.modelObject.position.y = -0.39;
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[6], 1000) 
+
+    }
+
+    const camera_go_first_1 = async function () {
+           options.zoom = 0.45;
+        elem.style.top = `${320}vh`;
+          viewer.scene.modelObject.position.y = -0.24;
+        
+ viewer.scene.modelObject.position.x =0;
+       
+        viewer.scene.modelObject.position.z = 0;
            //controls.autoRotate = true; 
        
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[3], 1000) 
     }
+  
+
+    const camera_go_dia = async function () {
+  elem.style.top = `${710}vh`;
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[7], 1000) 
+
+    }
+    const camera_go_misu = async function () {
+        options.zoom = 0.7;
+        viewer.scene.modelObject.position.z= 0.17;
+            viewer.scene.activeCamera.setCameraOptions(options);
+  elem.style.top = `${810}vh`;
+
+await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000) 
+
+    }
+
+
     
     function stepScroll() {
 
          ScrollTrigger.create({
              trigger: '.first',
-             onEnter: camera_go_first,
-             //onEnterBack: camera_go_second,
-             //onLeave: camera_go_first,
-            // onLeaveBack:camera_go_first
+          start: "top center",
+    end: "bottom bottom",
+         markers: true,
+             onEnter: () => {
+            
+             console.log('1번째 들어간다')
+                 camera_go_first()
+             },
+         onEnterBack: () => {
+                console.log('1번째 back')
+             camera_go_first()
+           
+         }
 
          })
+          ScrollTrigger.create({
+             trigger: '.fifth',
+          start: "top center",
+    end: "bottom bottom",
+         markers: true,
+             onEnter: () => {
+            
+             console.log('4번째 들어간다')
+                 camera_go_first_1()
+             },
+         onEnterBack: () => {
+                console.log('4번째 back')
+             camera_go_first_1()
+           
+         }
+
+          })
+        
+         ScrollTrigger.create({
+             trigger: '.misu',
+          start: "top center",
+    end: "bottom bottom",
+         markers: true,
+             onEnter: () => {
+            
+           
+                 camera_go_misu()
+             },
+         onEnterBack: () => {
+               
+             camera_go_misu()
+           
+         }
+
+         })
+        
+        
         
         
      ScrollTrigger.create({
@@ -257,6 +417,21 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 1000)
          }
 
      })
+        
+        
+         ScrollTrigger.create({
+  trigger: '.seven',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => {  camera_go_six() },
+         onEnterBack: () => {
+             
+              camera_go_six()
+              console.log('2번째 back')
+         }
+
+     })
       
      ScrollTrigger.create({
   trigger: '.third',
@@ -268,6 +443,41 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 1000)
              
              camera_go_third()
             console.log('3번째 back')
+         }
+
+     })
+ ScrollTrigger.create({
+  trigger: '.six-1',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => { camera_go_eigth() },
+         onEnterBack: () => {
+            camera_go_eigth();
+         }
+
+ })
+        
+         ScrollTrigger.create({
+  trigger: '.eve',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => { camera_go_eve() },
+         onEnterBack: () => {
+            camera_go_eve();
+         }
+
+         })
+        
+          ScrollTrigger.create({
+  trigger: '.dia',
+    start: "top center",
+    end: "bottom bottom",
+         markers: true,
+         onEnter: () => { camera_go_dia() },
+         onEnterBack: () => {
+            camera_go_dia();
          }
 
      })
