@@ -166,7 +166,7 @@ console.log(window.outerWidth,'화면 크기 ')
     camViewPlugin._cameraViews.push(view)
 
      view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
- view.position.set(-2.75, 0.53, 0.9)
+ view.position.set(2.85, 1.03, 1.766)
 
 
     camViewPlugin._cameraViews.push(view)
@@ -234,7 +234,7 @@ console.log(window.outerWidth,'화면 크기 ')
        //viewer.scene.activeCamera.updateProjectionMatrix();
     } 
     window.onresize = function (event) {
-    zoom_oo();
+    //zoom_oo();
 }
     const camera_go_second_2 = function () {
         console.log('Back')
@@ -272,10 +272,10 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 1000)
 await camViewPlugin.animateToView(camViewPlugin._cameraViews[4], 1000) 
     }
  const camera_go_eigth = async function () {
-        options.zoom = 0.8;
+        options.zoom = 0.7;
   viewer.scene.activeCamera.setCameraOptions(options);
         //viewer.scene.modelObject.position.x = -1.34;
-             viewer.scene.modelObject.position.z = 0.23;
+             viewer.scene.modelObject.position.z = -0.38;
    elem.style.top = `${510}vh`
 
 await camViewPlugin.animateToView(camViewPlugin._cameraViews[5], 1000) 
@@ -308,8 +308,10 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[3], 1000)
         options.zoom = 1.4;
           viewer.scene.activeCamera.setCameraOptions(options);
         elem.style.top = `${610}vh`;
+        //-0.31
+          viewer.scene.modelObject.position.z = -0.;
           viewer.scene.modelObject.position.y = -0.39;
-
+//
 await camViewPlugin.animateToView(camViewPlugin._cameraViews[6], 1000) 
 
     }
@@ -352,14 +354,14 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
              trigger: '.first',
           start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
              onEnter: () => {
             
-             console.log('1번째 들어간다')
+            
                  camera_go_first()
              },
          onEnterBack: () => {
-                console.log('1번째 back')
+             
              camera_go_first()
            
          }
@@ -369,7 +371,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
              trigger: '.fifth',
           start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
              onEnter: () => {
             
              console.log('4번째 들어간다')
@@ -383,23 +385,6 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
 
           })
         
-         ScrollTrigger.create({
-             trigger: '.misu',
-          start: "top center",
-    end: "bottom bottom",
-         markers: true,
-             onEnter: () => {
-            
-           
-                 camera_go_misu()
-             },
-         onEnterBack: () => {
-               
-             camera_go_misu()
-           
-         }
-
-         })
         
         
         
@@ -408,7 +393,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.second',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => { camera_go_second() },
          onEnterBack: () => {
              
@@ -423,7 +408,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.seven',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => {  camera_go_six() },
          onEnterBack: () => {
              
@@ -437,7 +422,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.third',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => { camera_go_third() },
          onEnterBack: () => {
              
@@ -450,7 +435,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.six-1',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => { camera_go_eigth() },
          onEnterBack: () => {
             camera_go_eigth();
@@ -462,7 +447,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.eve',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => { camera_go_eve() },
          onEnterBack: () => {
             camera_go_eve();
@@ -474,7 +459,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
   trigger: '.dia',
     start: "top center",
     end: "bottom bottom",
-         markers: true,
+         markers: false,
          onEnter: () => { camera_go_dia() },
          onEnterBack: () => {
             camera_go_dia();
@@ -542,19 +527,12 @@ ScrollTrigger.create({
    
 
 
-   viewer.addEventListener('preFrame', ()=>{
-        if(needsUpdate){
-            camera.positionUpdated(false)
-            camera.targetUpdated(true)
-            needsUpdate = false;
-        }
-
-    })
+ 
   
 let lastKnownScrollPosition = 0;
 
 elem.style.position = 'absolute';
-
+ 
 
 document.addEventListener("scroll", (event) => {
  lastKnownScrollPosition = window.scrollY;
