@@ -53,7 +53,7 @@ async function setupViewer(){
     })
     await viewer.addPlugin(CameraViewPlugin)
     const camViewPlugin: any = viewer.getPlugin(CameraViewPlugin)
-    console.log(camViewPlugin,'?????')
+
     // Add some plugins
     const manager = await viewer.addPlugin(AssetManagerPlugin)
     const camera = viewer.scene.activeCamera
@@ -96,9 +96,9 @@ async function setupViewer(){
     // );
 
     // Add some UI for tweak and testing.
-   const uiPlugin = await viewer.addPlugin(TweakpaneUiPlugin)
+  //>> const uiPlugin = await viewer.addPlugin(TweakpaneUiPlugin)
     // Add plugins to the UI to see their settings.
-    uiPlugin.setupPlugins<IViewerPlugin>(TonemapPlugin, CanvasSnipperPlugin)
+    //>uiPlugin.setupPlugins<IViewerPlugin>(TonemapPlugin, CanvasSnipperPlugin)
  let needsUpdate = true;
     function onUpdate() {
         needsUpdate = true;
@@ -112,7 +112,7 @@ async function setupViewer(){
     const inn_color=manager.materials!.findMaterialsByName('airpods_max_silver_earbuds')[0] as MeshBasicMaterial2
     const head_color = manager.materials!.findMaterialsByName('airpods_max_silver_white_top')[0] as MeshBasicMaterial2
     
-
+/*
 const gui = new GUI()
 const cubeFolder = gui.addFolder('Cube')
 cubeFolder.add(viewer.scene.modelObject.position, 'x', -5, 5, 0.01)
@@ -122,7 +122,8 @@ cubeFolder.open()
 const cameraFolder = gui.addFolder('Camera')
 
 cameraFolder.open()
-
+*/
+    
 let view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
   view._cameraViews=[view]
   view.position.set(-4.06, 1.33, 1.29)
@@ -137,15 +138,15 @@ const options = viewer.scene.activeCamera.getCameraOptions();
 viewer.scene.activeCamera.setCameraOptions(options);
     window.onresize = function (event) {
      
-console.log(window.outerWidth,'화면 크기 ')
+
 
  }
  view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
-  cubeFolder.add(view.position, 'x', -5, 5, 0.01)
+  //cubeFolder.add(view.position, 'x', -5, 5, 0.01)
  view.position.set(3.21, -0.42, 4.89)
 
     camViewPlugin._cameraViews.push ( view);
-    console.log('첫번쟤',   camViewPlugin._cameraView)
+
  
  view =camViewPlugin.getCurrentCameraView(viewer.scene.activeCamera)
  view.position.set(-3.46, -2.25, 4.08)
@@ -196,7 +197,7 @@ console.log(window.outerWidth,'화면 크기 ')
     //camViewPlugin._cameraViews.push(view)
       //camViewPlugin.animDuration = 5000 
     camViewPlugin.animEase = 'circInOut'
-    console.log(camViewPlugin._cameraViews,'확인좀')
+
   //await camViewPlugin.animateToView(camViewPlugin._cameraViews[0], 1000)
   //await camViewPlugin.animateToView(camViewPlugin._cameraViews[1], 5000)
     const camera_go = async function () {
@@ -217,7 +218,7 @@ console.log(window.outerWidth,'화면 크기 ')
     
     const zoom_oo = function () {
         var check_widht = window.outerWidth;
-        console.log('?뭐임',check_widht)
+ 
         
         if (check_widht > 300 && check_widht < 800) {
             options.zoom = 0.5;
@@ -237,7 +238,7 @@ console.log(window.outerWidth,'화면 크기 ')
     //zoom_oo();
 }
     const camera_go_second_2 = function () {
-        console.log('Back')
+     
     }
     const camera_go_second = async function () {
          
@@ -374,11 +375,11 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
          markers: false,
              onEnter: () => {
             
-             console.log('4번째 들어간다')
+            
                  camera_go_first_1()
              },
          onEnterBack: () => {
-                console.log('4번째 back')
+             
              camera_go_first_1()
            
          }
@@ -398,7 +399,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
          onEnterBack: () => {
              
              camera_go_second()
-              console.log('2번째 back')
+            
          }
 
      })
@@ -413,7 +414,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
          onEnterBack: () => {
              
               camera_go_six()
-              console.log('2번째 back')
+            
          }
 
      })
@@ -427,7 +428,7 @@ await camViewPlugin.animateToView(camViewPlugin._cameraViews[8], 1000)
          onEnterBack: () => {
              
              camera_go_third()
-            console.log('3번째 back')
+      
          }
 
      })
@@ -581,14 +582,13 @@ function change_color(_colorchange: Color) {
     }
     function change_color2(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
-     console.log('색 지정 아웃 ',out_color)
+ 
     //viewer.scene.setDirty()<색 저장
     out_color.color = _colorchange;
     viewer.scene.setDirty()
     }
      function change_color3(_colorchange: Color) {
 // change_color(new Color(ox343s).covertSRGBToLiner()
-     console.log('색 지정 머리부분 ',head_color)
 
     head_color.color = _colorchange;
     viewer.scene.setDirty()
@@ -596,8 +596,9 @@ function change_color(_colorchange: Color) {
 
 
 }
-
-
+const cont: any = document.getElementById('tweakpaneUiContainer');
+// cont.style.visibility='hidden'
+console.log(cont)
 
 setupViewer()
 
